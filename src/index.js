@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { HashRouter } from 'react-router-dom'
 
 import { Provider } from 'mobx-react'
 
@@ -13,6 +14,8 @@ import stores from './stores'
 const rootElement = document.getElementById('root')
 ReactDOM.render((
     <Provider { ...stores }>
-        <App />
+        <HashRouter>
+            <App />
+        </HashRouter>
     </Provider>
 ), rootElement)

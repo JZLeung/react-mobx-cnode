@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { List, Skeleton, Card, Avatar, Tag } from 'antd'
 import IconText from '../IconText/index'
@@ -12,8 +13,8 @@ const { Meta } = Card
 const Topic = ({ topic }) => (
     <List.Item.Meta
         avatar={ <Avatar src={ topic.author.avatar_url } /> }
-        title={ topic.title }
-        description={ <a href={ `/user/@${ topic.author.loginname }` }>{topic.author.loginname}</a> }
+        title={ <Link to={ `/topic/${ topic.id }` } >{topic.title}</Link> }
+        description={ <Link to={ `/user/@${ topic.author.loginname }` }>{topic.author.loginname}</Link> }
     />
 )
 

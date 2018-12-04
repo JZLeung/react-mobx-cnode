@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
 
 import { inject, observer } from 'mobx-react'
 import Dev from 'mobx-react-devtools'
@@ -13,6 +14,7 @@ const { Content, Footer } = Layout
 
 @inject('topic')
 @observer
+@withRouter
 class App extends Component {
 
     render() {
@@ -21,7 +23,10 @@ class App extends Component {
                 <Header />
                 <Content className='layout-content'>
                     <div style={ { minHeight: 280, marginTop: '10px' } }>
-                        <Home />
+                        <Switch>
+                            <Route path='/' component={ Home } />
+                            <Redirect path='*' to='/' />
+                        </Switch>
                     </div>
                 </Content>
                 <Footer style={ { textAlign: 'center' } }>
