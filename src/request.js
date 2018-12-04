@@ -1,4 +1,5 @@
 import axios from 'axios'
+import authStore from './stores/authStore'
 
 const BASE_API = 'https://cnodejs.org/api/v1'
 
@@ -10,6 +11,9 @@ const service = axios.create({
 
 service.interceptors.request.use(
     config => {
+        if (authStore.token) {
+            config.url += (config.url.indexOf('?') > -1 ? '&' : '?') + `accesstoken=${ authStore.token }`
+        }
         return config
     }, 
     error => {
@@ -27,4 +31,25 @@ service.interceptors.response.use(
     }
 )
 
-export default service
+const responseBody = res => res.data
+
+const request = {
+    get: (...args) => service.get(...args).then(responseBody),
+    post: (...args) => service.post(...args).then(responseBody),
+}
+
+// export default service
+const Auth = {
+    verify: accesstoken => request.post('/accesstoken', { accesstoken })
+}
+
+const Topic = {
+    list: (tab = '', page = 1, limit = 10) => request.get(`/topics?tab=${ tab }&page=${ page }&limit=${ limit }`),
+    detail: topicId => request.get(`/topic/${ topicId }`),
+    create: newTopic => request.post('/topics', newTopic)
+}
+
+export default {
+    Auth,
+    Topic
+}

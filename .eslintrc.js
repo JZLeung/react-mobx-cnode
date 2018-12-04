@@ -39,14 +39,14 @@ module.exports = {
     "react/jsx-filename-extension": 0,
     "react/jsx-curly-spacing": [ 2, "always" ],
     "react/jsx-indent": [ 2, 4 ],
-    "react/prop-types": [ 1 ],
+    // "react/prop-types": [ 1 ],
     "react/no-array-index-key": [ 1 ],
     "no-undef": [ 1 ],
     "no-case-declarations": [ 1 ],
     "no-return-assign": [ 1 ],
     "no-param-reassign": [ 1 ],
     "no-shadow": [ 1 ],
-    "camelcase": [ 1 ],
+    // "camelcase": [ 1 ],
     "no-underscore-dangle" : [0, "always"],
   }
 }

@@ -1,0 +1,31 @@
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    color: #fff;
+
+    .header-left, .header-right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    // .header-right{}
+
+    .logo{
+        height: 32px;
+        display: block;
+        // min-width: 20px;;
+        // background: url('https://static2.cnodejs.org/public/images/cnodejs_light.svg') center center no-repeat;
+        // background-size: auto 100%;
+    }
+
+    .header-link{
+        padding: 0 10px;
+        color: #a5a5a5;
+        &:hover{
+            color: #fff;
+        }
+    }
+}
