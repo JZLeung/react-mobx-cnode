@@ -9,7 +9,6 @@ import TabBar from './TabBar'
 import RightBox from 'components/RightBox/index'
 
 import style from './Home.module.scss'
-console.log(style)
 
 @inject('topic')
 @observer
@@ -27,6 +26,13 @@ class HomePage extends Component {
         this.props.topic.getTopics()
     }
 
+    setPrevPage = () => {
+        this.props.topic.setPage(-1)
+    }
+    setNextPage = () => {
+        this.props.topic.setPage(1)
+    }
+
     render() {
         const { topic } = this.props
         return (
@@ -34,9 +40,8 @@ class HomePage extends Component {
                 <Row gutter={ 16 }>
                     <Col sm={ 18 } xs={ 24 }>
                         <Card extra={ <TabBar tabs={ topic.tabs } current={ topic.tab } handleClick={ this.changeTab } /> }>
-
                             <div className={ style[ 'topic-list' ] }>
-                                <TopicList topics={ topic.topics } getTagName={ this.getTagName } />
+                                <TopicList topics={ topic.topics } current={ topic.page } loading={ topic.loading } getTagName={ this.getTagName } nextPage={ this.setNextPage } prevPage={ this.setPrevPage } />
                             </div>
                         </Card>
                     

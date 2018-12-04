@@ -3,6 +3,8 @@ import React from 'react'
 import { List, Skeleton, Card, Avatar, Tag } from 'antd'
 import IconText from '../IconText/index'
 
+import Pagination from 'components/Pagination/index'
+
 import PropTypes from 'prop-types'
 
 const { Meta } = Card
@@ -15,42 +17,64 @@ const Topic = ({ topic }) => (
     />
 )
 
-const TopicList = ({ topics, getTagName }) => topics.length > 0 ? (
-    <List
-        itemLayout="vertical"
-        size="large"
-        dataSource={ topics }
-        renderItem={ item => (
-            <List.Item
-                key={ item.title }
-                actions={ [
-                    item.good ? <Tag color='#87d068'>精华</Tag> : <Tag color='#108ee9'>{getTagName(item.tab)}</Tag>,
-                    <IconText type="eye-o" text={ `${ item.visit_count }` } />,
-                    <IconText type="message" text={ `${ item.reply_count }` } />
-                ] }
-            >
-                <Topic topic={ item } />
-            </List.Item>
-        ) }
-    />
-) : (
-    <List>
-        <List.Item>
-            <Card
-                style={ { width: '100%', marginTop: 16 } }
-            >
-                <Skeleton loading={ true } avatar active>
-                    <Meta
-                        avatar={ <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> }
-                        title="Card title"
-                        description="This is the description"
-                    />
-                </Skeleton>
-            </Card>
-        </List.Item>
-    </List>
+const Loading = () => (
+    <Card
+        style={ { width: '100%', marginTop: 16 } }
+    >
+        <Skeleton loading={ true } avatar active>
+            <Meta
+                avatar={ <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> }
+                title="Card title"
+                description="This is the description"
+            />
+        </Skeleton>
+    </Card>
 )
 
+const TopicList = ({ topics, getTagName, loading, prevPage, nextPage, current }) => (
+    <div className="topic-list">
+        {
+            topics.length > 0 ? (
+                <List
+                    itemLayout="vertical"
+                    size="large"
+                    dataSource={ topics }
+                    renderItem={ item => (
+                        loading ? <List.Item><Loading /></List.Item> : <List.Item
+                            key={ item.title }
+                            actions={ [
+                                item.good ? <Tag color='#87d068'>精华</Tag> : <Tag color='#108ee9'>{getTagName(item.tab)}</Tag>,
+                                <IconText type="eye-o" text={ `${ item.visit_count }` } />,
+                                <IconText type="message" text={ `${ item.reply_count }` } />
+                            ] }
+                        >
+                            <Topic topic={ item } />
+                        </List.Item>
+                    ) }
+                />
+            ) : (
+                <List>
+                    <List.Item>
+                        <Card
+                            style={ { width: '100%', marginTop: 16 } }
+                        >
+                            <Skeleton loading={ true } avatar active>
+                                <Meta
+                                    avatar={ <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> }
+                                    title="Card title"
+                                    description="This is the description"
+                                />
+                            </Skeleton>
+                        </Card>
+                    </List.Item>
+                </List>
+            )
+            
+        }
+
+        <Pagination { ...{ loading, nextPage, prevPage, current } } />
+    </div>
+)
 const topicPropTypes = PropTypes.shape({
     author: PropTypes.shape({
         avatar_url: PropTypes.string.isRequired,
