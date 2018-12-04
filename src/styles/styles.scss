@@ -1,0 +1,22 @@
+@import "~reset-css";
+
+.App {
+  font-family: sans-serif;
+  /* text-align: center; */
+}
+
+.layout {
+
+  .layout-content{
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 420px) {
+  .layout {
+
+    .layout-content{
+      padding: 0 10px;
+    }
+  }
+}

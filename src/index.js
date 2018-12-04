@@ -5,7 +5,7 @@ import { Provider } from 'mobx-react'
 
 import App from './App'
 
-import './styles/styles.css'
+import './styles/styles.scss'
 import 'antd/dist/antd.css'
 
 import stores from './stores'

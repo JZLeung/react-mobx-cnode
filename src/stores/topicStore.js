@@ -27,7 +27,7 @@ class TopicStore {
     @observable tab = 'all'
 
     @action getTopics() {
-        Agent.Topic.list(this.tab, this.page, this.limit).then(res => {
+        return Agent.Topic.list(this.tab, this.page, this.limit).then(res => {
             console.log(res)
             this.topics = res
         })

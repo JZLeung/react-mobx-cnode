@@ -1,0 +1,25 @@
+.home-page{
+
+    .tabbars{
+
+        width: 100%;
+        // padding: 10px;
+
+        .tabbar-item{
+            color: #666;
+            padding: 4px 8px;
+            margin-right: 10px;
+            cursor: pointer;
+
+            &.is-active{
+                color: #fff;
+                background: #1890ff
+            }
+        }
+    }
+
+    .topic-list{
+        background: #fff;
+        padding: 0 24px;
+    }
+}

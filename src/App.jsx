@@ -7,7 +7,7 @@ import Header from 'components/Header/index'
 
 import Home from './views/Home'
 
-import { Layout, Breadcrumb } from 'antd'
+import { Layout } from 'antd'
 
 const { Content, Footer } = Layout
 
@@ -19,8 +19,8 @@ class App extends Component {
         return (
             <Layout className="layout">
                 <Header />
-                <Content style={ { padding: '0 50px' } }>
-                    <div style={ { background: '#fff', padding: 24, minHeight: 280 } }>
+                <Content className='layout-content'>
+                    <div style={ { minHeight: 280, marginTop: '10px' } }>
                         <Home />
                     </div>
                 </Content>

@@ -8,19 +8,12 @@ import style from './header.module.scss'
 @inject('topic')
 @observer
 class HeaderComponent extends Component {
-
-    changeTab = (tab) => {
-        // console.log(tab)
-        this.props.topic.setTab(tab)
-    }
     
     render() {
-        const { topic } = this.props
         return (
             <Layout.Header className={ style.header }>
                 <div className={ style[ 'header-left' ] }>
                     <img className={ style.logo } src="http://static2.cnodejs.org/public/images/cnodejs_light.svg" alt=""/>
-                    {/* <Input.Search />  */}
                 </div>
                 <div className={ style[ 'header-right' ] }>
                     <a href="/" className={ style[ 'header-link' ] }>首页</a>
