@@ -5,7 +5,7 @@ import { Card, Avatar, Button } from 'antd'
 const UserInfo = ({ user, title = '' }) => (
     <Card
         title={ user.loginname }
-        extra={ <a href="#">More</a> }
+        extra="More"
         style={ { width: '100%' } }
     >
         <Avatar shape="square" src={ user.avatar_url } />

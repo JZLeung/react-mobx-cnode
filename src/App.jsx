@@ -7,24 +7,27 @@ import Dev from 'mobx-react-devtools'
 import Header from 'components/Header/index'
 
 import Home from './views/Home'
+import Topic from './views/Topic'
 
 import { Layout } from 'antd'
 
 const { Content, Footer } = Layout
 
+@withRouter
 @inject('topic')
 @observer
-@withRouter
 class App extends Component {
 
     render() {
+        console.log('App will render.')
         return (
             <Layout className="layout">
                 <Header />
                 <Content className='layout-content'>
                     <div style={ { minHeight: 280, marginTop: '10px' } }>
                         <Switch>
-                            <Route path='/' component={ Home } />
+                            <Route path='/topic/:id' component={ Topic } />
+                            <Route path='/' component={ Home } strict />
                             <Redirect path='*' to='/' />
                         </Switch>
                     </div>

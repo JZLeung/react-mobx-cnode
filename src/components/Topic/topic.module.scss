@@ -1,0 +1,25 @@
+.topic{
+    background: #fff;
+    img{
+        display: block;
+        max-width: 100%;;
+    }
+    .topic {
+        &-title{
+            font-size: 16px;
+            line-height: 2em;
+        }
+        &-infos{
+            // margin-top: -10px;
+            // margin-bottom: 20px;
+            font-size: 14px;
+            color: #888;
+            span{
+                margin-right: 10px;
+                i{
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}

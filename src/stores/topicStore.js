@@ -28,6 +28,8 @@ class TopicStore {
     @observable limit = 15
     @observable tab = 'all'
 
+    @observable topic = null
+
     @action getTopics() {
         this.loading = true
         return Agent.Topic.list(this.tab, this.page, this.limit).then(res => {
@@ -38,7 +40,7 @@ class TopicStore {
     }
 
     @action getTagName(tagkey) {
-        const tag = this.tabs.find(one => one.key === tagkey)
+        const tag = tabs.find(one => one.key === tagkey)
         return tag ? tag.name : '全部'
     }
 
@@ -51,6 +53,14 @@ class TopicStore {
         if (this.page === 1 && step === -1) return false
         this.page += step
         this.getTopics()
+    }
+
+    @action getTopic(id) {
+        if (!this.topic || this.topic.id !== id) {
+            Agent.Topic.detail(id).then(res => {
+                this.topic = res
+            })
+        }
     }
 }
 

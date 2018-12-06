@@ -22,13 +22,7 @@ const Loading = () => (
     <Card
         style={ { width: '100%', marginTop: 16 } }
     >
-        <Skeleton loading={ true } avatar active>
-            <Meta
-                avatar={ <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> }
-                title="Card title"
-                description="This is the description"
-            />
-        </Skeleton>
+        <Skeleton loading={ true } avatar active></Skeleton>
     </Card>
 )
 
