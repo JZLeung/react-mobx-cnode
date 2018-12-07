@@ -49,7 +49,14 @@ const Topic = {
     create: newTopic => request.post('/topics', newTopic)
 }
 
+const User = {
+    info: loginname => request.get(`/user/${ loginname }`),
+    messagecount: () => request.get('/message/count'),
+    messages: () => request.get('/messages')
+}
+
 export default {
+    User,
     Auth,
     Topic
 }

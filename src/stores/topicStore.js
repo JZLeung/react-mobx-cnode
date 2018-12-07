@@ -58,10 +58,12 @@ class TopicStore {
     @action getTopic(id) {
         if (!this.topic || this.topic.id !== id) {
             this.topic = null
-            Agent.Topic.detail(id).then(res => {
+            return Agent.Topic.detail(id).then(res => {
                 this.topic = res
+                return res
             })
         }
+        return Promise.resolve(this.topic)
     }
 }
 
