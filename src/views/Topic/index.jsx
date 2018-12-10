@@ -19,6 +19,12 @@ class TopicPage extends Component {
         })
     }
 
+    changeTab = (tab) => {
+        this.props.topic.setTab({ key: tab })
+        // this.props.topic.getTopics()
+        this.props.history.push('/')
+    }
+
     render() {
 
         const { params } = this.props.match
@@ -29,7 +35,7 @@ class TopicPage extends Component {
         return (
             <Row gutter={ 16 }>
                 <Col sm={ 18 } xs={ 24 }>
-                    <Topic topic={ topic } getTagName={ getTagName } />
+                    <Topic topic={ topic } getTagName={ getTagName } changeTab={ this.changeTab } />
 
                     <CommentList comments={ topic ? topic.replies : [] } loading={ !topic }/>
                 </Col>

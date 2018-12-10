@@ -6,7 +6,7 @@ import style from './topic.module.scss'
 
 import { formatDate } from '../../utils/common'
 
-const Topic = ({ topic, getTagName }) => {
+const Topic = ({ topic, getTagName, changeTab }) => {
 
     const styleObj = { width: '100%' }
 
@@ -21,7 +21,7 @@ const Topic = ({ topic, getTagName }) => {
                     {topic.author.loginname}
                 </span>
                 <span>
-                    {topic.good ? <Tag color='#87d068'>精华</Tag> : <Tag color='#108ee9'>{getTagName(topic.tab)}</Tag>}
+                    {topic.good ? <Tag color='#87d068' onClick={ () => changeTab(topic.tab) }>精华</Tag> : <Tag color='#108ee9' onClick={ () => changeTab(topic.tab) }>{getTagName(topic.tab)}</Tag>}
                 </span>
                 <span>
                     <Icon type="eye" />
