@@ -8,6 +8,7 @@ import Header from 'components/Header/index'
 
 import Home from './views/Home'
 import Topic from './views/Topic'
+import User from './views/User'
 
 import { Layout } from 'antd'
 
@@ -27,6 +28,7 @@ class App extends Component {
                     <div style={ { minHeight: 280, marginTop: '10px' } }>
                         <Switch>
                             <Route path='/topic/:id' component={ Topic } />
+                            <Route path='/user/@:loginname' component={ User } />
                             <Route path='/' component={ Home } strict />
                             <Redirect path='*' to='/' />
                         </Switch>

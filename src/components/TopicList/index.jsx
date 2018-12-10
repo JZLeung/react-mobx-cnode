@@ -67,7 +67,7 @@ const TopicList = ({ topics, getTagName, loading, prevPage, nextPage, current })
             
         }
 
-        <Pagination { ...{ loading, nextPage, prevPage, current } } />
+        { current && <Pagination { ...{ loading, nextPage, prevPage, current } } /> }
     </div>
 )
 const topicPropTypes = PropTypes.shape({
