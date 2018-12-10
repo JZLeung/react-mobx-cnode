@@ -40,7 +40,7 @@ const request = {
 
 // export default service
 const Auth = {
-    verify: accesstoken => request.post('/accesstoken', { accesstoken })
+    verify: accesstoken => service.post('/accesstoken', { accesstoken })
 }
 
 const Topic = {

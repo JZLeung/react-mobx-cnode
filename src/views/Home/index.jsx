@@ -10,7 +10,7 @@ import RightBox from 'components/RightBox/index'
 
 import style from './Home.module.scss'
 
-@inject('topic')
+@inject('topic', 'user')
 @observer
 class HomePage extends Component {
     componentDidMount() {
@@ -34,7 +34,7 @@ class HomePage extends Component {
     }
 
     render() {
-        const { topic } = this.props
+        const { topic, user } = this.props
         return (
             <div className={ style[ 'home-page' ] }>
                 <Row gutter={ 16 }>
@@ -47,7 +47,7 @@ class HomePage extends Component {
                     
                     </Col>
                     <Col sm={ 6 } xs={ 24 }>
-                        <RightBox />
+                        <RightBox user={ user } />
                     </Col>
                 </Row>
             </div>

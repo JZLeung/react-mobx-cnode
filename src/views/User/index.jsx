@@ -22,7 +22,7 @@ class UserPage extends Component {
     }
 
     render() {
-        const { user } = this.props.user
+        const { user } = this.props
         console.log(user)
         return (
             <div>
@@ -76,7 +76,7 @@ class UserPage extends Component {
                         }
                     </Col>
                     <Col sm={ 6 } xs={ 24 }>
-                        <RightBox user={ user } loading={ !user } />
+                        <RightBox user={ user } loading={ !user.user } />
                     </Col>
                 </Row>
             </div>

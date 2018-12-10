@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
-import { Card, Avatar, Button, Skeleton } from 'antd'
+import { Card, Avatar, Button, Skeleton, Modal, Input, Alert } from 'antd'
 
 import { Link } from 'react-router-dom'
 import style from './right-box.module.scss'
+import { observer } from 'mobx-react'
 
 const UserInfo = ({ user, title = '' }) => (
     user ? <Card
@@ -26,10 +27,64 @@ const UserInfo = ({ user, title = '' }) => (
     </Card> : <Skeleton loading={ true } active avatar></Skeleton>
 )
 
+@observer
 class RightBox extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            showDialog: false,
+            error: ''
+        }
+    }
+
+    handleOk = () => {
+        const token = this.input.input.value
+        if (!token) {
+            this.setState({
+                error: '请输入你的 AccessToken'
+            })
+            return false
+        }
+        this.props.user.checkAccessToken(token).then(res => {
+            // console.log(res)
+            this.props.user.login(token)
+            this.setState({
+                showDialog: false,
+                error: ''
+            })
+        }).catch(() => {
+            // console.error(err)
+            this.setState({
+                error: 'AccessToken 错误'
+            })
+        })
+    }
+
+    handleCancel = () => {
+        this.setState({
+            showDialog: false
+        })
+    }
+
+    openDialog = () => {
+        this.setState({
+            showDialog: true
+        })
+    }
+
+    handleCloseAlert = () => {
+        this.setState({
+            error: ''
+        })
+    }
+
     render() {
 
-        const { user, loading = false } = this.props
+        const { loading = false } = this.props
+        const { user } = this.props.user
+        const { error } = this.state
+        console.log('Right box', user)
         return (
             <div className={ style[ 'right-box' ] }>
                 {
@@ -37,7 +92,24 @@ class RightBox extends Component {
                     : user ? <UserInfo user={ user } title='用户信息' />
                     : <Card title="CNode 社区" style={ { width: '100%' } }>
                         <p>尚未登录，请通过输入 AccessToken 进行登录</p>
-                        <Button type="primary">AccessToken 登录</Button>
+                        <Modal
+                            title="输入 AccessToken"
+                            visible={ this.state.showDialog }
+                            onOk={ this.handleOk }
+                            onCancel={ this.handleCancel }
+                        >
+                            {
+                                error ? <Alert
+                                    message={ error }
+                                    type="error"
+                                    closable
+                                    banner
+                                    afterClose={ this.handleCloseAlert }
+                                />
+                                : null}
+                            <Input placeholder="请输入你的 AccessToken" ref={ input => (this.input = input) } />
+                        </Modal>
+                        <Button type="primary" onClick={ this.openDialog }>AccessToken 登录</Button>
                     </Card>
                 }
 

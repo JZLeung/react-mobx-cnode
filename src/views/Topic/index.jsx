@@ -29,7 +29,7 @@ class TopicPage extends Component {
 
         const { params } = this.props.match
         const { topic, getTagName } = this.props.topic
-        const { user } = this.props.user
+        const { user } = this.props
         console.log(params, topic, user)
 
         return (
@@ -40,7 +40,7 @@ class TopicPage extends Component {
                     <CommentList comments={ topic ? topic.replies : [] } loading={ !topic }/>
                 </Col>
                 <Col sm={ 6 } xs={ 24 }>
-                    <RightBox user={ user } loading={ !user } />
+                    <RightBox user={ user } loading={ !user.user } />
                 </Col>
             </Row>
         )
