@@ -9,6 +9,7 @@
 
   .layout-content{
     max-width: 1280px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 50px;
   }
@@ -20,5 +21,18 @@
     .layout-content{
       padding: 0 10px;
     }
+  }
+}
+body,html{
+  background: #f0f2f5;
+}
+
+img{
+  display: block;
+  max-width: 100%;;
+}
+p{
+  &:last-child{
+    margin-bottom: 0;
   }
 }

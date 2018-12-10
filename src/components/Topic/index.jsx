@@ -4,6 +4,8 @@ import { Card, Icon, Tag, Avatar } from 'antd'
 
 import style from './topic.module.scss'
 
+import { formatDate } from '../../utils/common'
+
 const Topic = ({ topic, getTagName }) => {
 
     const styleObj = { width: '100%' }
@@ -27,7 +29,7 @@ const Topic = ({ topic, getTagName }) => {
                 </span>
                 <span>
                     <Icon type="clock-circle" />
-                    {topic.create_at}
+                    {formatDate(topic.create_at)}
                 </span>
             </div>
         </div>

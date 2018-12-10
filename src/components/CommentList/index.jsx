@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Card, List, Avatar, Comment, Divider } from 'antd'
+import { formatDate } from '../../utils/common'
 
 const CommentItem = ({ comment,divider }) => (
     <Comment 
@@ -9,7 +10,7 @@ const CommentItem = ({ comment,divider }) => (
             <Avatar src={ comment.author.avatar_url } alt={ comment.author.loginname }/>
         ) }
         content={ <div dangerouslySetInnerHTML={ { __html: comment.content } }></div> }
-        datetime={ comment.create_at }
+        datetime={ formatDate(comment.create_at) }
     >
         {divider && <Divider style={ { margin: 0 } } />}
     </Comment>

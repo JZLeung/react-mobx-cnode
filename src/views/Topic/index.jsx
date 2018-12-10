@@ -8,20 +8,23 @@ import RightBox from 'components/RightBox'
 
 import { Row, Col } from 'antd'
 
-@inject('topic')
+@inject('topic', 'user')
 @observer
 class TopicPage extends Component {
 
     componentDidMount() {
         const { params } = this.props.match
-        this.props.topic.getTopic(params.id)
+        this.props.topic.getTopic(params.id).then(topic => {
+            this.props.user.getUser(topic.author.loginname)
+        })
     }
 
     render() {
 
         const { params } = this.props.match
         const { topic, getTagName } = this.props.topic
-        console.log(params, topic)
+        const { user } = this.props.user
+        console.log(params, topic, user)
 
         return (
             <Row gutter={ 16 }>
@@ -31,7 +34,7 @@ class TopicPage extends Component {
                     <CommentList comments={ topic ? topic.replies : [] } loading={ !topic }/>
                 </Col>
                 <Col sm={ 6 } xs={ 24 }>
-                    {topic && <RightBox user={ topic.author } />}
+                    <RightBox user={ user } loading={ !user } />
                 </Col>
             </Row>
         )
