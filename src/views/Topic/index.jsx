@@ -27,10 +27,10 @@ class TopicPage extends Component {
 
     render() {
 
-        const { params } = this.props.match
+        // const { params } = this.props.match
         const { topic, getTagName } = this.props.topic
         const { user } = this.props
-        console.log(params, topic, user)
+        // console.log(params, topic, user)
 
         return (
             <Row gutter={ 16 }>

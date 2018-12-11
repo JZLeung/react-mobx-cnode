@@ -46,9 +46,9 @@ class RightBox extends Component {
             })
             return false
         }
-        this.props.user.checkAccessToken(token).then(res => {
+        this.props.auth.checkAccessToken(token).then(res => {
             // console.log(res)
-            this.props.user.login(token)
+            this.props.auth.login(token)
             this.setState({
                 showDialog: false,
                 error: ''
@@ -82,7 +82,7 @@ class RightBox extends Component {
     render() {
 
         const { loading = false } = this.props
-        const { user } = this.props.user
+        const user = (this.props.auth && this.props.auth.user) || this.props.user.user
         const { error } = this.state
         console.log('Right box', user)
         return (

@@ -12,7 +12,7 @@ import { formatDate } from '../../utils/common'
 const { Meta } = Card
 
 @withRouter
-@inject('user')
+@inject('user', 'auth')
 @observer
 class UserPage extends Component {
 
@@ -22,23 +22,25 @@ class UserPage extends Component {
     }
 
     render() {
-        const { user } = this.props
-        console.log(user)
+        const { user, auth } = this.props
+
+        const userInfos = user.user
+        console.log(userInfos)
         return (
             <div>
                 <Row gutter={ 16 }>
                     <Col sm={ 18 } xs={ 24 }>
                         
                         {
-                            user && 
+                            userInfos && 
                             <div>
                                 <Card title={ <Link to='/'>主页</Link> } className='mb-10'>
                                     <Meta
-                                        avatar={ <Avatar src={ user.avatar_url } /> }
-                                        title={ user.loginname }
+                                        avatar={ <Avatar src={ userInfos.avatar_url } /> }
+                                        title={ userInfos.loginname }
                                         description={ <div>
-                                            <p>积分: {user.score}</p>
-                                            <p>注册时间: {formatDate(user.create_at)}</p>
+                                            <p>积分: {userInfos.score}</p>
+                                            <p>注册时间: {formatDate(userInfos.create_at)}</p>
                                         </div> }
                                     />
                                 </Card>
@@ -46,7 +48,7 @@ class UserPage extends Component {
                                 <Card title='TA 的主题' className='mb-10'>
                                     <List
                                         itemLayout="horizontal"
-                                        dataSource={ user.recent_topics }
+                                        dataSource={ userInfos.recent_topics }
                                         renderItem={ item => (
                                             <List.Item>
                                                 <List.Item.Meta
@@ -61,7 +63,7 @@ class UserPage extends Component {
                                 <Card title='TA 的回复' className='mb-10'>
                                     <List
                                         itemLayout="horizontal"
-                                        dataSource={ user.recent_replies }
+                                        dataSource={ userInfos.recent_replies }
                                         renderItem={ item => (
                                             <List.Item>
                                                 <List.Item.Meta
@@ -76,7 +78,7 @@ class UserPage extends Component {
                         }
                     </Col>
                     <Col sm={ 6 } xs={ 24 }>
-                        <RightBox user={ user } loading={ !user.user } />
+                        <RightBox user={ user }  auth={ auth } loading={ !(auth.user || user.user) } />
                     </Col>
                 </Row>
             </div>
