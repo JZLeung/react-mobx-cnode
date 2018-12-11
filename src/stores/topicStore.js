@@ -18,6 +18,14 @@ const tabs = [ {
     key: 'job'
 } ]
 
+// console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') {
+    tabs.push({
+        name: '测试',
+        key: 'dev'
+    })
+}
+
 class TopicStore {
     @observable topics = []
     @observable tabs = tabs

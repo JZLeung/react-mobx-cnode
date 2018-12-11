@@ -25,7 +25,7 @@ class AuthStore {
     @action login(token) {
         return Agent.Auth.verify(token).then(res => {
             this.setToken(token)
-            // this.getUser(res.loginname)
+            this.getUser(res.loginname)
         })
     }
 }
