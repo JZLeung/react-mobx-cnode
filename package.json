@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "homepage": "https://jzleung.github.io/react-mobx-cnode/",
   "dependencies": {
     "antd": "3.11.0",
     "axios": "^0.18.0",
