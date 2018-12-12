@@ -6,26 +6,29 @@ A react demo for code, base on react, react-mobx and ant-design.
 
 ##  Todo List
 About Topics without login
-[x] Index Page (topic list).
-[x] Topic Page (topic's content and its comments).
-[x] User Page (userinfo and user's topic and replys).
+
+- [x] Index Page (topic list).
+
+- [x] Topic Page (topic's content and its comments).
+
+- [x] User Page (userinfo and user's topic and replys).
 
 About Topics' action with login (use markdown editor)
-[ ] Post New Topic 
-[ ] Post New Comment 
+- [ ] Post New Topic 
+- [ ] Post New Comment 
 
 Other Actions for topics
-[ ] Reply someone's comment
-[ ] Collect Topic
-[ ] Ups Comment
+- [ ] Reply someone's comment
+- [ ] Collect Topic
+- [ ] Ups Comment
 
 User Message
-[ ] Unread Count
-[ ] Message List
+- [ ] Unread Count
+- [ ] Message List
 
 Optimise
-[ ] CDN
-[ ] Async Router
+- [ ] CDN
+- [ ] Async Router
 
 ##  Screen Shoots
 ![](https://ws1.sinaimg.cn/large/006tNbRwgy1fy3q05uu2ij30u013zaf7.jpg)
